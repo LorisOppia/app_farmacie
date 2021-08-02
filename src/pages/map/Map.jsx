@@ -10,6 +10,9 @@ import {
   IonButton,
   IonFooter,
   IonImg,
+  IonFab,
+  IonFabButton,
+  IonIcon,
 } from '@ionic/react'
 
 import stringManager from '../../utility/stringManager'
@@ -35,6 +38,7 @@ import circoscrizioni from '../../data/circoscrizioni.json'
 import quartieri from '../../data/quartieri.json'
 
 import sponsor from '../../assets/img/sponsor.jpg'
+import { locateSharp } from 'ionicons/icons'
 
 const url='http://3.142.202.105:7484'
 
@@ -46,9 +50,11 @@ export class Map extends Component {
     quartieri:{},
     circoscrizioni: {},
     center:[45.438351, 10.99171],
+    mapCont:null,
   }
 
   async componentDidMount() {
+
     const res = await Geolocation.getCurrentPosition()
     this.center=[res.coords.latitude, res.coords.longitude]
     this.GetFarmacie()
@@ -91,6 +97,11 @@ export class Map extends Component {
 
   render() {
     const { zoom, locationClicked, showModal } = this.props.map
+
+  const centerPosition = () => {
+    this.state.mapCont.flyTo(this.center)
+  }
+
     return (
       <IonPage>
         <IonHeader>
@@ -114,6 +125,7 @@ export class Map extends Component {
               className={classes.mapContainer}
               center={this.center}
               zoom={zoom}
+              whenCreated={mapCont => this.setState({ mapCont })}
             >
 
             <LayersControl position="topright">
@@ -149,6 +161,11 @@ export class Map extends Component {
             </MapContainer>
           )}
 
+          <IonFab vertical="bottom" horizontal="end" slot="fixed">
+            <IonFabButton onClick={() => centerPosition()}>
+              <IonIcon icon={locateSharp} />
+            </IonFabButton>
+          </IonFab>
         </IonContent>
 
         <IonFooter>
