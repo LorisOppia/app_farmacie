@@ -8,6 +8,8 @@ import {
   IonToolbar,
   IonModal,
   IonButton,
+  IonFooter,
+  IonImg,
 } from '@ionic/react'
 
 import stringManager from '../../utility/stringManager'
@@ -31,6 +33,8 @@ import LocationModal from '../../components/location/LocationModal'
 import { Geolocation } from '@capacitor/geolocation'
 import circoscrizioni from '../../data/circoscrizioni.json'
 import quartieri from '../../data/quartieri.json'
+
+import sponsor from '../../assets/img/sponsor.jpg'
 
 const url='http://3.142.202.105:7484'
 
@@ -146,12 +150,16 @@ export class Map extends Component {
               <LocationMarkers myloc={this.state.farmacie.features}/>
             </MapContainer>
           )}
+
         </IonContent>
+
+        <IonFooter>
+            <IonImg src={sponsor}/>
+        </IonFooter>
       </IonPage>
     )
   }
 }
-
 const mapStateToProps = state => ({
   map: state.map,
 })
