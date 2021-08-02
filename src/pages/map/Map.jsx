@@ -16,6 +16,7 @@ import {
   Marker,
   Popup,
   MapConsumer,
+  GeoJSON,
   LayersControl,
 } from 'react-leaflet'
 
@@ -26,13 +27,18 @@ import LocationMarkers from '../../components/location/LocationMarkers'
 import LocationModal from '../../components/location/LocationModal'
 
 import { Geolocation } from '@capacitor/geolocation'
+import circoscrizioni from '../../data/circoscrizioni.json'
+import quartieri from '../../data/quartieri.json'
 
 const url='http://3.142.202.105:7484'
 
 export class Map extends Component {
+  
   state = {
     mapContainer: false,
     farmacie:{},
+    quartieri:{},
+    circoscrizioni: {},
     latPos: null,
     longPos: null,
   }
@@ -71,6 +77,14 @@ export class Map extends Component {
     layer.bindPopup(farmacia.properties.denominazi)
   }
 
+  OnEachQuartiere = (quartiere, layer) =>{
+    layer.bindPopup(quartiere.properties.quartiere)
+  }
+
+  OnEachCircoscrizione = (paese, layer) =>{
+    layer.bindPopup(paese.properties.circoscriz)
+  }
+
   render() {
     const { center, zoom, locationClicked, showModal } = this.props.map
     return (
@@ -84,8 +98,8 @@ export class Map extends Component {
         <IonContent id="content" fullscreen>
 
 
-        <IonModal isOpen={showModal} backdropDismiss={false}>   
-           { locationClicked && ( <LocationModal loc={locationClicked}/> )}
+          <IonModal isOpen={showModal} backdropDismiss={false}>   
+            { locationClicked && ( <LocationModal loc={locationClicked}/> )}
             <IonButton onClick={() => this.props.dismissLocationModal()}>
               Dismiss
             </IonButton>
@@ -97,21 +111,23 @@ export class Map extends Component {
               center={center}
               zoom={zoom}
             >
-              <LayersControl position="topright">
-      <LayersControl.BaseLayer checked name="OpenStreetMap.Mapnik">
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-      </LayersControl.BaseLayer>
-      <LayersControl.BaseLayer name="OpenStreetMap.BlackAndWhite">
-        <TileLayer
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"
-        />
-      </LayersControl.BaseLayer>
 
-    </LayersControl>  
+            <LayersControl position="topright">
+              <LayersControl.BaseLayer checked name="Mappa base">
+                <TileLayer
+                  attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+              </LayersControl.BaseLayer>   
+              <LayersControl.BaseLayer name="Circoscrizioni">
+                <GeoJSON key='circoscrizioni' data={circoscrizioni.features} onEachFeature={this.OnEachCircoscrizione} />
+              </LayersControl.BaseLayer>      
+              <LayersControl.BaseLayer name="Quartieri">
+                <GeoJSON key='quartieri' data={quartieri.features} onEachFeature={this.OnEachQuartiere} />
+              </LayersControl.BaseLayer>
+            </LayersControl> 
+
+
               <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
