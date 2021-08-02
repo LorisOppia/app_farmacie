@@ -45,15 +45,13 @@ export class Map extends Component {
     farmacie:{},
     quartieri:{},
     circoscrizioni: {},
-    latPos: null,
-    longPos: null,
+    center:[45.438351, 10.99171],
   }
 
   async componentDidMount() {
     const res = await Geolocation.getCurrentPosition()
-    this.latPos=res.coords.latitude;
-    this.longPos=res.coords.longitude;
-    this.GetFarmacie();
+    this.center=[res.coords.latitude, res.coords.longitude]
+    this.GetFarmacie()
     if (this.state.mapContainer) return
 
     setTimeout(() => {
@@ -92,7 +90,7 @@ export class Map extends Component {
   }
 
   render() {
-    const { center, zoom, locationClicked, showModal } = this.props.map
+    const { zoom, locationClicked, showModal } = this.props.map
     return (
       <IonPage>
         <IonHeader>
@@ -114,7 +112,7 @@ export class Map extends Component {
           {this.state.mapContainer && (
             <MapContainer
               className={classes.mapContainer}
-              center={center}
+              center={this.center}
               zoom={zoom}
             >
 
@@ -140,11 +138,11 @@ export class Map extends Component {
               />
               <MapConsumer>
                 {map => {
-                  map.setView(center)
+                  map.setView(this.center)
                   return null
                 }}
               </MapConsumer>
-              <Marker position={[this.latPos, this.longPos]}>
+              <Marker position={this.center}>
                 <Popup>Tu sei qui</Popup>
               </Marker>
               <LocationMarkers myloc={this.state.farmacie.features}/>
