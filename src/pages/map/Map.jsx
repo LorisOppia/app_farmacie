@@ -103,7 +103,7 @@ export class Map extends Component {
           <IonModal isOpen={showModal} backdropDismiss={false}>   
             { locationClicked && ( <LocationModal loc={locationClicked}/> )}
             <IonButton onClick={() => this.props.dismissLocationModal()}>
-              Dismiss
+              Chiudi
             </IonButton>
           </IonModal>
 
