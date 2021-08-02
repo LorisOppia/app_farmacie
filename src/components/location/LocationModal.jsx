@@ -23,34 +23,9 @@ farmacia: {
     color: 'danger',
 },
 }
-/*
-
-  {
-   "geometry":{
-      "coordinates":[
-         10.998106354,
-         45.444332246
-      ],
-      "type":"Point"
-   },
-   "id":18,
-   "properties":{
-      "chiave":"7359-29A",
-      "circoscriz":"CENTRO STORICO",
-      "denominazi":"S. Anastasia",
-      "farmacia":18,
-      "indirizzo":"CORSO S. ANASTASIA 29A,\r\n37121 Verona",
-      "omogenea":"Citta` Antica",
-      "quartiere":"CITTA' ANTICA",
-      "tooltip":"18 S. Anastasia",
-      "url_rel":"modulo3/oggetto.aspx?oggetto=farmacia&id_oggetto=18"
-   },
-   "type":"Feature"
-}
-*/
 
 export const LocationModal = ({ loc }) => {
-
+  console.log(JSON.stringify(loc))
    // let's put upper case every word's first char
    let titleCase=(str)=>{
     var splitStr = str.toLowerCase().split(' ');
@@ -63,12 +38,14 @@ export const LocationModal = ({ loc }) => {
     return splitStr.join(' ').trim(); 
   }
 
-
-  if(loc.properties &&
+  //if don't have loc.properties or its attributes throw internal error text,
+  // just to easily customize the app farmacie in to other apps
+  if(
      (
-      !('denominazi' in loc.properties) ||
-      !('indirizzo' in loc.properties)||!('quartiere' in loc.properties)
+      loc.properties &&
+      ( !('denominazi' in loc.properties) || !('indirizzo' in loc.properties)||!('quartiere' in loc.properties))
      )
+     || !loc.properties
     )
         return(
           <IonContent>

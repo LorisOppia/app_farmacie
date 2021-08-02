@@ -1,10 +1,8 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Marker, Popup } from 'react-leaflet'
 import L from 'leaflet'
 import farmacia from '../../assets/icons/locations/farmacia.svg'
 import Location from './Location'
-import { showLocationModal } from '../../redux/actions'
 
 const farmaciaIcon = L.icon({
   iconUrl: farmacia,
@@ -17,7 +15,7 @@ const locationConfig = {
   },
 }
 
-export const LocationList = ({ myloc, showLocationModal }) => {
+export const LocationList = ({ myloc }) => {
 
   return (
     <div>
@@ -27,13 +25,10 @@ export const LocationList = ({ myloc, showLocationModal }) => {
           <Marker
             key={loc.id}
             position={[loc.geometry.coordinates[1], loc.geometry.coordinates[0]]}
-            eventHandlers={{
-              click: () => showLocationModal({locationClicked:loc}),
-            }}
             icon={locationConfig["farmacia"].icon}
           >
             <Popup>
-              <Location location={loc.properties}/>
+              <Location location={loc}/>
             </Popup>
            
           </Marker>
@@ -42,9 +37,6 @@ export const LocationList = ({ myloc, showLocationModal }) => {
   )
 }
 
-const mapStateToProps = state => ({
-})
 
-const mapDispatchToProps = {showLocationModal}
 
-export default connect(mapStateToProps, mapDispatchToProps)(LocationList)
+export default LocationList

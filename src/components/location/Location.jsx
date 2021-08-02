@@ -1,10 +1,12 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
 import{
 IonButton,
 } from '@ionic/react'
+import { showLocationModal } from '../../redux/actions'
 
-const Location = ({ location }) => {
+export const Location = ({ location, showLocationModal }) => {
 
   // let's put upper case every word's first char
   let titleCase=(str)=>{
@@ -20,13 +22,18 @@ const Location = ({ location }) => {
 
   return (
     <div>
-      <h3>{titleCase(location.denominazi)}</h3> 
+      <h3>{titleCase(location.properties.denominazi)}</h3> 
       
-      <IonButton expand="block" fill="clear" color="transparent" onClick={() => console.log("ciao")}>
+      <IonButton expand="block" fill="clear" color="transparent" onClick={() => showLocationModal({locationClicked:location})}>
         Info
       </IonButton> 
     </div>
   )
 }
 
-export default Location
+const mapStateToProps = state => ({
+})
+
+const mapDispatchToProps = {showLocationModal}
+
+export default connect(mapStateToProps, mapDispatchToProps) (Location)
