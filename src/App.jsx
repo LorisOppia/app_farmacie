@@ -11,9 +11,11 @@ import {
 import { IonReactRouter } from '@ionic/react-router'
 import {
   mapOutline,
+  searchOutline,
 } from 'ionicons/icons'
 
 import Map from './pages/map/Map'
+import AboutUs from './pages/aboutUs/AboutUs'
 import { connect } from 'react-redux'
 
 /* Core CSS required for Ionic components to work properly */
@@ -42,6 +44,7 @@ const App = () => {
         <IonTabs>
           <IonRouterOutlet>
             <Route path="/map" component={Map} />
+            <Route path="/aboutus" component={AboutUs} />
             <Route path="/" exact render={() => <Redirect to="/map" />} />
           </IonRouterOutlet>
 
@@ -49,6 +52,11 @@ const App = () => {
             <IonTabButton tab="map" href="/map">
               <IonIcon icon={mapOutline} />
               <IonLabel>Map</IonLabel>
+            </IonTabButton>
+
+            <IonTabButton tab="aboutus" href="/aboutus">
+              <IonIcon icon={searchOutline} />
+              <IonLabel>37100 LAB</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>

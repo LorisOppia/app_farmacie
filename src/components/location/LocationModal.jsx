@@ -27,7 +27,6 @@ farmacia: {
 }
 
 export const LocationModal = ({ loc }) => {
-  console.log(loc)
   //if don't have loc.properties or its attributes throw internal error text,
   // just to easily customize the app farmacie in to other apps
   if(
