@@ -8,10 +8,12 @@ import {
     IonLabel,
     IonList,
     IonItem,
-    IonIcon
+    IonIcon,
+    IonNote
   } from '@ionic/react'
 
   import { medkitOutline, leafOutline } from 'ionicons/icons'
+  import stringManager from '../../utility/stringManager'
 
 const categoryConfig = {
 parco: {
@@ -25,19 +27,7 @@ farmacia: {
 }
 
 export const LocationModal = ({ loc }) => {
-  
-   // let's put upper case every word's first char
-   let titleCase=(str)=>{
-    var splitStr = str.toLowerCase().split(' ');
-    for (var i = 0; i < splitStr.length; i++) {
-        // You do not need to check if i is larger than splitStr length, as your for does that for you
-        // Assign it back to the array
-        splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);     
-    }
-    // Directly return the joined string
-    return splitStr.join(' ').trim(); 
-  }
-
+  console.log(loc)
   //if don't have loc.properties or its attributes throw internal error text,
   // just to easily customize the app farmacie in to other apps
   if(
@@ -58,23 +48,29 @@ export const LocationModal = ({ loc }) => {
     <IonHeader>
       <IonToolbar>
             <IonItem>
-            <IonTitle>
-              {titleCase(loc.properties.denominazi)}
-            </IonTitle>
-                <IonIcon
-                        color={ categoryConfig["farmacia"].color }
-                        icon={categoryConfig["farmacia"].icon}
-                        slot="end"
-                    />
+              <IonTitle>
+                {stringManager.titleCase(loc.properties.denominazi)}
+              </IonTitle>
+                  <IonIcon
+                          color={ categoryConfig["farmacia"].color }
+                          icon={categoryConfig["farmacia"].icon}
+                          slot="end"
+                      />
             </IonItem>
         </IonToolbar>
     </IonHeader>
     <IonList>
       <IonItem>
-        <IonLabel className="ion-text-wrap">Indirizzo: {titleCase(loc.properties.indirizzo)}</IonLabel>
+        <IonNote slot="start" color="primary">Indirizzo</IonNote>
+        <IonLabel className="ion-text-wrap">{stringManager.titleCase(loc.properties.indirizzo)}</IonLabel>
       </IonItem>
       <IonItem>
-        <IonLabel>Distretto: {titleCase(loc.properties.quartiere)}</IonLabel>
+        <IonNote slot="start" color="primary">Quartiere</IonNote>
+        <IonLabel>{stringManager.titleCase(loc.properties.quartiere)}</IonLabel>
+      </IonItem>
+      <IonItem>
+        <IonNote slot="start" color="primary">Circosc.</IonNote>
+        <IonLabel>{stringManager.titleCase(loc.properties.circoscriz)}</IonLabel>
       </IonItem>
     </IonList>
   </IonContent>

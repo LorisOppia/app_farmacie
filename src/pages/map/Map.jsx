@@ -10,6 +10,8 @@ import {
   IonButton,
 } from '@ionic/react'
 
+import stringManager from '../../utility/stringManager'
+
 import {
   MapContainer,
   TileLayer,
@@ -78,11 +80,11 @@ export class Map extends Component {
   }
 
   OnEachQuartiere = (quartiere, layer) =>{
-    layer.bindPopup(quartiere.properties.quartiere)
+    layer.bindPopup(stringManager.titleCase(quartiere.properties.quartiere))
   }
 
   OnEachCircoscrizione = (paese, layer) =>{
-    layer.bindPopup(paese.properties.circoscriz)
+    layer.bindPopup(stringManager.titleCase(paese.properties.circoscriz))
   }
 
   render() {
