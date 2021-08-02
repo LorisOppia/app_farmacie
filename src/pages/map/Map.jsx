@@ -123,7 +123,7 @@ export class Map extends Component {
                 }}
               </MapConsumer>
               <Marker position={[this.latPos, this.longPos]}>
-                <Popup>You Are Here</Popup>
+                <Popup>Tu sei qui</Popup>
               </Marker>
               <LocationMarkers myloc={this.state.farmacie.features}/>
             </MapContainer>

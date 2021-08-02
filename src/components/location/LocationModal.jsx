@@ -25,7 +25,7 @@ farmacia: {
 }
 
 export const LocationModal = ({ loc }) => {
-  console.log(JSON.stringify(loc))
+  
    // let's put upper case every word's first char
    let titleCase=(str)=>{
     var splitStr = str.toLowerCase().split(' ');
