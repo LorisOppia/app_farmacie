@@ -14,7 +14,6 @@ import {
 } from 'ionicons/icons'
 
 import Map from './pages/map/Map'
-import { fetchCategories, fetchDistricts } from './redux/actions'
 import { connect } from 'react-redux'
 
 /* Core CSS required for Ionic components to work properly */
@@ -36,7 +35,7 @@ import '@ionic/react/css/display.css'
 /* Theme variables */
 import './theme/variables.css'
 
-const App = ({ fetchDistricts, fetchCategories }) => {
+const App = () => {
   return (
     <IonApp>
       <IonReactRouter>
@@ -60,9 +59,4 @@ const App = ({ fetchDistricts, fetchCategories }) => {
 
 const mapStateToProps = state => ({})
 
-const mapDispatchToProps = {
-  fetchDistricts,
-  fetchCategories,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps)(App)

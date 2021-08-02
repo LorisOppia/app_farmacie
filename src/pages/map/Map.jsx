@@ -73,7 +73,7 @@ export class Map extends Component {
       <IonPage>
         <IonHeader>
           <IonToolbar>
-            <IonTitle>Map</IonTitle>
+            <IonTitle>Farmacie a Verona</IonTitle>
           </IonToolbar>
         </IonHeader>
 

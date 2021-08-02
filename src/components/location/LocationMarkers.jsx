@@ -17,7 +17,7 @@ const locationConfig = {
   },
 }
 
-export const LocationList = ({ myloc, locations, showLocationModal }) => {
+export const LocationList = ({ myloc, showLocationModal }) => {
 
   return (
     <div>
@@ -43,7 +43,6 @@ export const LocationList = ({ myloc, locations, showLocationModal }) => {
 }
 
 const mapStateToProps = state => ({
-  locations: Object.values(state.location),
 })
 
 const mapDispatchToProps = {showLocationModal}
