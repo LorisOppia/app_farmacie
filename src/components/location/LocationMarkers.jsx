@@ -28,7 +28,7 @@ export const LocationList = ({ myloc, showLocationModal }) => {
             key={loc.id}
             position={[loc.geometry.coordinates[1], loc.geometry.coordinates[0]]}
             eventHandlers={{
-              click: () => console.log("ciao")//showLocationModal({locationClicked:loc}),
+              click: () => showLocationModal({locationClicked:loc}),
             }}
             icon={locationConfig["farmacia"].icon}
           >

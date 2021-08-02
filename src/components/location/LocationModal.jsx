@@ -23,20 +23,56 @@ farmacia: {
     color: 'danger',
 },
 }
+/*
 
+  {
+   "geometry":{
+      "coordinates":[
+         10.998106354,
+         45.444332246
+      ],
+      "type":"Point"
+   },
+   "id":18,
+   "properties":{
+      "chiave":"7359-29A",
+      "circoscriz":"CENTRO STORICO",
+      "denominazi":"S. Anastasia",
+      "farmacia":18,
+      "indirizzo":"CORSO S. ANASTASIA 29A,\r\n37121 Verona",
+      "omogenea":"Citta` Antica",
+      "quartiere":"CITTA' ANTICA",
+      "tooltip":"18 S. Anastasia",
+      "url_rel":"modulo3/oggetto.aspx?oggetto=farmacia&id_oggetto=18"
+   },
+   "type":"Feature"
+}
+*/
 export const LocationModal = ({ loc }) => {
+
+  if(loc.properties &&
+     (
+      !('denominazi' in loc.properties) ||
+      !('indirizzo' in loc.properties)||!('quartiere' in loc.properties)
+     )
+    )
+        return(
+          <IonContent>
+            <h1>Internal Error</h1>
+          </IonContent>
+        )
 
   return (
     <IonContent>
     <IonHeader>
-        <IonToolbar>
+      <IonToolbar>
             <IonItem>
             <IonTitle>
-            {loc.denominazione}
+              {loc.properties.denominazi}
             </IonTitle>
                 <IonIcon
-                        color={ categoryConfig[loc.category.denominazione].color }
-                        icon={categoryConfig[loc.category.denominazione].icon}
+                        color={ categoryConfig["farmacia"].color }
+                        icon={categoryConfig["farmacia"].icon}
                         slot="end"
                     />
             </IonItem>
@@ -44,40 +80,10 @@ export const LocationModal = ({ loc }) => {
     </IonHeader>
     <IonList>
       <IonItem>
-        <IonLabel>Indirizzo {loc.indirizzo}</IonLabel>
+        <IonLabel>Indirizzo {loc.properties.indirizzo}</IonLabel>
       </IonItem>
       <IonItem>
-        <IonLabel>Distretto {loc.district.denominazione}</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Category {loc.category.denominazione}</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Civico {loc.civico}</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Email {loc.email}</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Telefono {loc.telefono}</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Sito {loc.sito}</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Orario {loc.orario}</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel className="ion-text-wrap">Descrizione {loc.descrizione}</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Cover {loc.cover.name}</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Latitudine {loc.lat}</IonLabel>
-      </IonItem>
-      <IonItem>
-        <IonLabel>Longitudine {loc.lng}</IonLabel>
+        <IonLabel>Distretto {loc.properties.quartiere}</IonLabel>
       </IonItem>
     </IonList>
   </IonContent>
