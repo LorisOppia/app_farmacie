@@ -83,10 +83,6 @@ export class Map extends Component {
   }
 
   //ON EACH METHODS
-  OnEachFarmacia = (farmacia, layer) =>{
-    layer.bindPopup(farmacia.properties.denominazi)
-  }
-
   OnEachQuartiere = (quartiere, layer) =>{
     layer.bindPopup(stringManager.titleCase(quartiere.properties.quartiere))
   }
