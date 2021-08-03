@@ -170,7 +170,7 @@ export class Map extends Component {
 
         <IonFooter>
             <IonImg src={sponsor}
-            style={{maxWidth: "400px"}}
+            style={{maxWidth: "500px" , margin: "auto"}}
             />
         </IonFooter>
       </IonPage>
