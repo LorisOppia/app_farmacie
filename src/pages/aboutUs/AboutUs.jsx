@@ -25,7 +25,7 @@ import {
   import { images, logoInstagram, square, triangle } from 'ionicons/icons';
   import abb from '../../assets/img/abb.jpeg'
   import smartphone from '../../assets/img/smartphone.png'
-  import { medkitOutline, leafOutline,  mapOutline,logoFacebook,atCircleOutline,earthOutline,
+  import { medkitOutline, leafOutline,  mapOutline, star, logoFacebook,atCircleOutline,earthOutline,
     searchOutline, } from 'ionicons/icons'
 
 /* Core CSS required for Ionic components to work properly */
@@ -63,6 +63,7 @@ const categoryConfig = {
       
       <IonPage>
         
+        <IonContent >
           <IonToolbar>
         <IonImg src={abb}
             style={{maxWidth: "400px" , margin: "auto"}}
@@ -72,11 +73,26 @@ const categoryConfig = {
             style={{maxWidth: "150px" , margin: "auto"}}
             />
             </IonToolbar>
-       <IonToolbar>
-         
-       </IonToolbar>
-       
-        <IonContent >
+
+
+  <IonToolbar>
+
+
+    <IonButtons slot="secondary">
+      <IonButton fill="outline">
+        <IonIcon slot="start" icon={logoFacebook} />
+        Star
+      </IonButton>
+    </IonButtons>
+    <IonTitle>Outline Buttons</IonTitle>
+    <IonButtons slot="primary">
+      <IonButton color="danger" fill="outline">
+        Edit
+        <IonIcon slot="end" icon={logoFacebook} />
+      </IonButton>
+    </IonButtons>
+  </IonToolbar>
+
         
             <IonToolbar color="success">
            
@@ -115,9 +131,6 @@ const categoryConfig = {
          
         </IonContent>
 
-        <IonFooter>
-        
-        </IonFooter>
 
       </IonPage>
     )
