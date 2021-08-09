@@ -3,7 +3,7 @@
 # Il progetto
 La seguente applicazione mobile nasce dall'esigenza di trovare in tempo reale ed istantaneamente più vicino alla nostra posizione attuale. L'obiettivo è quello di fornire uno strumento facile ed efficace, utilizzabile dai cittadini, per ottenere un servizio veloce ed affidabile nella consultazione di archivi comunali per un servizio informativo migliore.
 # Come utilizzare l'applicazione
-Per utilizzare l'App è sufficiente installarla sul proprio dispositivo e selezionare i punti interattivi sulla mappa nella provincia di verona.
+Per utilizzare l'App è sufficiente installarla sul proprio dispositivo e selezionare i punti interattivi sulla mappa nel comune di verona.
 # credits
 Lavoro sviluppato da Innovation Lab in collaborazione con Comune di Verona.
 ![sponsor](https://user-images.githubusercontent.com/87977853/127863204-46d984eb-4025-479b-b6e6-4bd8f8e38c5c.jpeg)
