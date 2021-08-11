@@ -203,12 +203,24 @@ export class Map extends Component {
     
       showGetFeatureInfo: function (err, latlng, content) {
         if (err) { console.log(err); return; } // do nothing if there's an error
-    
-        // Otherwise show the content in a popup, or something.
-        L.popup({ maxWidth: 800})
-          .setLatLng(latlng)
-          .setContent(content)
-          .openOn(this._map);
+        try{
+          var DOMParser = require('dom-parser')
+          var parser = new DOMParser();
+          var doc = parser.parseFromString(content, 'text/html');
+          var x = doc.getElementsByTagName('td')[2].innerHTML
+          var s1 = '<p>Farmacia: ' + x
+          var y = doc.getElementsByTagName('td')[4].innerHTML
+          s1 = s1 + '<p>Indirizzo: ' + y
+          var z = doc.getElementsByTagName('td')[6].innerHTML
+          s1 = s1 + '<p>Circoscrizione: ' + z
+          // Otherwise show the content in a popup, or something
+          L.popup()
+            .setLatLng(latlng)
+            .setContent(s1)
+            .openOn(this._map)
+        }
+        catch(error){}
+   
       }
     });
     
